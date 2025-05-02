@@ -166,13 +166,12 @@ fn remove_duplicates(words: &[String], graph: &StableGraph<String, u32>) -> Vec<
 }
 
 fn export_dot_file(graph: &StableGraph<String, u32>, file_path: &str) -> io::Result<()> {
-    // Open the file for writing
     let mut file = File::create(file_path)?;
 
-    // Write the DOT graph structure with custom labels
+    
     writeln!(file, "digraph {{")?;
     for node_index in graph.node_indices() {
-        let label = &graph[node_index]; // Node label (the word)
+        let label = &graph[node_index];
         writeln!(file, "    {} [label=\"{}\"];", label,label)?;
     }
 
