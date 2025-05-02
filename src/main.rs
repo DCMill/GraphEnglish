@@ -23,14 +23,14 @@ struct Definition {
 async fn main() ->std::io::Result<()> {
     println!("Hello World");
 
-    // Create a graph with `String` as node type
+
     let mut graph = StableGraph::<String, u32>::new();
-    let origin = "a".to_string(); // Start word is "a"
+    let origin = "a".to_string();
     graph.add_node(origin.clone());
 
-    // Initialize definitions for depth-first expansion
+    
     let mut current_definitions: Vec<Vec<String>> = Vec::new();
-    current_definitions.push(vec![origin.clone()]); // Start depth with "a"
+    current_definitions.push(vec![origin.clone()]); 
 
     let mut depth_index = 0;
     let mut def_length = 1;
@@ -46,7 +46,7 @@ async fn main() ->std::io::Result<()> {
                 let (definitions, parts_of_speech) = get_definitions(word.as_str()).await;
                 extra_data.insert(word.clone(), parts_of_speech);
                 if !definitions.is_empty() {
-                    // Add connections and update graph
+                    
                     
                     let definitions_list = remove_duplicates(&definitions, &mut graph);
                     add_connections(word.clone(), definitions.clone(), &mut graph);
